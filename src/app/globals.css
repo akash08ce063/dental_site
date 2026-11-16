@@ -1,0 +1,152 @@
+@import "tailwindcss";
+@import "tw-animate-css";
+
+/*
+  Smile Hive Dental design tokens.
+  Honey + deep teal on clean white. Change the values here to re-theme
+  the whole site; shadcn/ui components read the same variables.
+*/
+:root {
+  --radius: 0.75rem;
+
+  --honey: #f2b01e;
+  --honey-deep: #8a5a00;
+  --pollen: #fff4cf;
+  --hive: #10363a;
+  --hive-soft: #1c4d52;
+  --foam: #e6f2ee;
+
+  --background: #ffffff;
+  --foreground: var(--hive);
+  --card: #ffffff;
+  --card-foreground: var(--hive);
+  --popover: #ffffff;
+  --popover-foreground: var(--hive);
+  --primary: var(--hive);
+  --primary-foreground: #ffffff;
+  --secondary: var(--foam);
+  --secondary-foreground: var(--hive);
+  --muted: #f3f7f5;
+  --muted-foreground: #46605f;
+  --accent: var(--honey);
+  --accent-foreground: var(--hive);
+  --destructive: #b3261e;
+  --border: #d5e3de;
+  --input: #a9c1ba;
+  --ring: var(--hive);
+}
+
+@theme inline {
+  --color-background: var(--background);
+  --color-foreground: var(--foreground);
+  --color-card: var(--card);
+  --color-card-foreground: var(--card-foreground);
+  --color-popover: var(--popover);
+  --color-popover-foreground: var(--popover-foreground);
+  --color-primary: var(--primary);
+  --color-primary-foreground: var(--primary-foreground);
+  --color-secondary: var(--secondary);
+  --color-secondary-foreground: var(--secondary-foreground);
+  --color-muted: var(--muted);
+  --color-muted-foreground: var(--muted-foreground);
+  --color-accent: var(--accent);
+  --color-accent-foreground: var(--accent-foreground);
+  --color-destructive: var(--destructive);
+  --color-border: var(--border);
+  --color-input: var(--input);
+  --color-ring: var(--ring);
+
+  --color-honey: var(--honey);
+  --color-honey-deep: var(--honey-deep);
+  --color-pollen: var(--pollen);
+  --color-hive: var(--hive);
+  --color-hive-soft: var(--hive-soft);
+  --color-foam: var(--foam);
+
+  --radius-sm: calc(var(--radius) - 4px);
+  --radius-md: calc(var(--radius) - 2px);
+  --radius-lg: var(--radius);
+  --radius-xl: calc(var(--radius) + 6px);
+
+  --font-sans: "Instrument Sans Variable", ui-sans-serif, system-ui, sans-serif;
+  --font-display: "Bricolage Grotesque Variable", "Instrument Sans Variable",
+    ui-sans-serif, system-ui, sans-serif;
+
+  --animate-cell-in: cell-in 0.7s cubic-bezier(0.2, 0.8, 0.2, 1) both;
+  @keyframes cell-in {
+    from {
+      opacity: 0;
+      transform: scale(0.82);
+    }
+    to {
+      opacity: 1;
+      transform: scale(1);
+    }
+  }
+}
+
+@layer base {
+  * {
+    @apply border-border outline-ring/50;
+  }
+  html {
+    scroll-behavior: smooth;
+    scroll-padding-top: 6rem;
+  }
+  body {
+    @apply bg-background text-foreground font-sans;
+    font-size: 1.0625rem;
+    line-height: 1.65;
+  }
+  h1,
+  h2,
+  h3 {
+    @apply font-display;
+    font-variation-settings: "opsz" 48;
+    letter-spacing: -0.02em;
+    line-height: 1.05;
+    text-wrap: balance;
+  }
+  p {
+    text-wrap: pretty;
+  }
+  :focus-visible {
+    outline: 3px solid var(--honey);
+    outline-offset: 3px;
+  }
+  ::selection {
+    background: var(--honey);
+    color: var(--hive);
+  }
+}
+
+@layer utilities {
+  /* Pointy-top hexagon: the honeycomb cell used across the site. */
+  .hex {
+    clip-path: polygon(50% 0, 100% 25%, 100% 75%, 50% 100%, 0 75%, 0 25%);
+  }
+  .container-site {
+    width: 100%;
+    max-width: 76rem;
+    margin-inline: auto;
+    padding-inline: 1.25rem;
+  }
+  @media (min-width: 768px) {
+    .container-site {
+      padding-inline: 2.5rem;
+    }
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.001ms !important;
+    animation-delay: 0ms !important;
+    transition-duration: 0.001ms !important;
+  }
+}
